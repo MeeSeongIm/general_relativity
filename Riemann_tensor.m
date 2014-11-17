@@ -43,7 +43,7 @@ Christoffel[m_, a_, b_, g_, ginv_] := Block[{n},
    Sum[ginv[[m, n]] (D[g[[n, a]], IndepVar[[b]]] +
         D[g[[n, b]], IndepVar[[a]]] -
         D[g[[a, b]], IndepVar[[n]]]),
-     {n, 1, Length[g]}]/2]]
+     {n, 1, Length[g]}]/2]]    (*check this function*)
 
 Riemann[a_, b_, c_, d_, g_, ing_] := Block[{},
   Expand[
@@ -70,8 +70,7 @@ RicciScalar[g_, ing_] := Block[{},
 Einstein[m_, n_, g_, ing_] :=
  Ricci[m, n, g, ing] - 
   RicciScalar[g, ing] g[[m, n]]/
-    2 (*gives derived nonlinear partial differential equations of 2nd \
-order*)
+    2 (*gives derived nonlinear partial differential equations of second order*)
 
 Bianchi[a_, g_, ing_] := Block[{},
   Expand[
@@ -100,7 +99,7 @@ invh = Inverse[h]
 Table[Christoffel[i, j, k, h, invh], {i, 1, 3}, {j, 1, 3}, {k, 1, 3}]
 Table[Riemann[a, b, c, d, h, invh], {a, 1, 3}, {b, 1, 3}, {c, 1, 3}, {d, 1, 3}]
   
-l = metric[Dt[r]^2 + r^2 Dt[th]^2 + r^2 Sin^2 (th) Dt[phi]^2, {r, th, phi}]
+l = metric[Dt[r]^2 + r^2 Dt[th]^2 + r^2 Sin^2 (th) Dt[phi]^2, {r, th, phi}] (*in spherical coordinates*)
 invl = Inverse[l]
 Table[Christoffel[i, j, k, l, invl], {i, 1, 3}, {j, 1, 3}, {k, 1, 3}]
 Table[Riemann[a, b, c, d, l, invl], {a, 1, 3}, {b, 1, 3}, {c, 1, 3}, {d, 1, 3}]
