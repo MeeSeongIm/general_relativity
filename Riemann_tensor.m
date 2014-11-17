@@ -90,14 +90,19 @@ Bianchi[a_, g_, ing_] := Block[{},
   ](*Bianchi identities: energy conservation*)
  
 MatrixForm[metric[tx Dt[t]^2 + x Dt[x]^2, {x, t}]]
-g = metric[
-  Dt[x]^2 + Dt[y]^2 + Dt[z]^2, {x, y, 
-   z}]  (*the metric tensor on the Cartesian space*)
+g = metric[Dt[x]^2 + Dt[y]^2 + Dt[z]^2, {x, y, z}]  (*the metric tensor on the Cartesian space*)
 invg = Inverse[g]
-Christoffel[1, 1, 1, g, invg] (*no nonzero Christoffel symbols of \
-this Cartesian metric*)
+Christoffel[1, 1, 1, g, invg] (*no nonzero Christoffel symbols of this Cartesian metric*)
 Ricci[1, 2, g, invg] (*no nonzero Ricci tensor*)
 
+h = metric[Dt[r]^2 + Dt[z]^2 + r^2 Dt[p]^2, {r, p, z}] (*in cylindrical coordinates*)
+invh = Inverse[h]
+Table[Christoffel[i, j, k, h, invh], {i, 1, 3}, {j, 1, 3}, {k, 1, 3}]
+Table[Riemann[a, b, c, d, h, invh], {a, 1, 3}, {b, 1, 3}, {c, 1, 3}, {d, 1, 3}]
+  
+l = metric[Dt[r]^2 + r^2 Dt[th]^2 + r^2 Sin^2 (th) Dt[phi]^2, {r, th, phi}]
+invl = Inverse[l]
+Table[Christoffel[i, j, k, l, invl], {i, 1, 3}, {j, 1, 3}, {k, 1, 3}]
+Table[Riemann[a, b, c, d, l, invl], {a, 1, 3}, {b, 1, 3}, {c, 1, 3}, {d, 1, 3}]
 
-
-
+  
