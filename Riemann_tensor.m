@@ -67,10 +67,7 @@ RicciScalar[g_, ing_] := Block[{},
   Expand[Sum[ing[[a, b]] Ricci[a, b, g, ing],
     {a, 1, Length[g]}, {b, 1, Length[g]}]]]
 
-Einstein[m_, n_, g_, ing_] :=
- Ricci[m, n, g, ing] - 
-  RicciScalar[g, ing] g[[m, n]]/
-    2 (*gives derived nonlinear partial differential equations of second order*)
+Einstein[m_, n_, g_, ing_] := Ricci[m, n, g, ing] - RicciScalar[g, ing] g[[m, n]]/2 (*gives derived nonlinear partial differential equations of second order*)
 
 Bianchi[a_, g_, ing_] := Block[{},
   Expand[
