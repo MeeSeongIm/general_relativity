@@ -99,9 +99,14 @@ invh = Inverse[h]
 Table[Christoffel[i, j, k, h, invh], {i, 1, 3}, {j, 1, 3}, {k, 1, 3}]
 Table[Riemann[a, b, c, d, h, invh], {a, 1, 3}, {b, 1, 3}, {c, 1, 3}, {d, 1, 3}]
   
-l = metric[Dt[r]^2 + r^2 Dt[th]^2 + r^2 Sin^2 (th) Dt[phi]^2, {r, th, phi}] (*in spherical coordinates*)
+l = metric[Dt[r]^2 + r^2 Dt[th]^2 + r^2 Sin[th]^2 Dt[phi]^2, {r, th, phi}] (*in spherical coordinates*)
 invl = Inverse[l]
 Table[Christoffel[i, j, k, l, invl], {i, 1, 3}, {j, 1, 3}, {k, 1, 3}]
 Table[Riemann[a, b, c, d, l, invl], {a, 1, 3}, {b, 1, 3}, {c, 1, 3}, {d, 1, 3}]
+
+u = metric[-r^2 Dt[th]^2 - r^2 Dt[phi]^2 Sin[th]^2 - Exp[lambda[r]] Dt[r]^2 + Exp[nu[r]] Dt[t]^2, {t, r, th, phi}] (*spherically symmetric metric for a charged mass point*)
+invu = Inverse[u]
+
+
 
   
